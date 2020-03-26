@@ -1,0 +1,36 @@
+#relaxlymainbody {
+    font-family: Circular, -apple-system, system-ui, Roboto, sans-serif;
+}
+
+#relaxly{
+    margin: 50px;
+    margin-top: 50px;
+    font-size: 20pt;
+    font-weight: 500;
+    letter-spacing: 2px;
+}
+
+#header{
+    grid-area: header;
+    margin: 50px;
+    
+}
+
+#res{
+    grid-area: res;
+    margin: 50px;
+    float: right;
+}
+#descriptionwrap{
+    margin-bottom: 200px;
+}
+
+#descriptionlist{
+    margin-left: 50px;
+    margin-bottom: 200px;
+}
+
+#kimreviews{
+    grid-area: kimreviews;
+    margin: 50px;
+}

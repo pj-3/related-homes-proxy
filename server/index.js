@@ -1,13 +1,26 @@
+require('newrelic');
 const express = require('express');
-const path = require('path');
+const cors = require('cors');
+
+const httpProxy = require('http-proxy');
+const proxy = httpProxy.createProxyServer({});
+
 
 const app = express();
 const port = 2985;
 
-app.use('/', express.static(__dirname + '/../client/dist'));
+app.use(cors());
+app.use(express.static(__dirname + '/../client/dist'));
 
-app.get ('/*', (req, res) => {
-    res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+
+app.all('/v1/*', (req, res) => {
+    proxy.web(req, res, {
+        target: "http://localhost:5000"
+    }, (err) => {  console.log(err); return res.status(404).send(); });
 })
+
+// app.get ('/*', (req, res) => {
+//     res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
+// })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))

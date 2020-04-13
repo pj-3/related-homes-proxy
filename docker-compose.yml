@@ -1,0 +1,35 @@
+version: '3.7'
+
+services:
+  postgres1:
+    image: postgres
+    container_name: postgres1
+    restart: always
+    ports:
+      - '27017:27017'
+    environment:
+      MYSQL_USER: 'postgres'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+      MYSQL_DATABASE: 'related_homes'
+
+  related_homes:
+    image: pygnasak/related_homes
+    container_name: related_homes
+    restart: always
+    command: 
+      - npm
+      - run
+      - start
+    depends_on:
+      - 'postgres1'
+    ports:
+      - 80:5000
+      - 8080:5000
+  
+
+networks:
+  related_homes:
+    driver: bridge
+
+

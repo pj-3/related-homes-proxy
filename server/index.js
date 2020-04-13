@@ -19,8 +19,5 @@ app.all('/v1/*', (req, res) => {
     }, (err) => {  console.log(err); return res.status(404).send(); });
 })
 
-// app.get ('/*', (req, res) => {
-//     res.sendFile(path.resolve(__dirname + '/../client/dist/index.html'));
-// })
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`))
